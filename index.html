@@ -1,3 +1,277 @@
-<!doctype html><html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nunți fără Griji</title>
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#faf6f0;color:#4a3b36;font-family:Georgia,serif;text-align:center;padding:16px}h1{font-weight:normal;font-size:2.2rem;margin:0 0 .5rem}p{font-family:system-ui,sans-serif;color:#8a6f68}</style></head>
-<body><main><h1>Nunți fără Griji</h1><p>În curând.</p></main></body></html>
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Planificatorul Nunții — Nunți fără Griji</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{--perla:#FFFDF9;--ink:#3A2E2C;--soft:#7D6B67;--blush:#D8A7A0;--rose:#B76E79;--gold:#C8A97E;--euca:#9CAF9A;--line:#EFE3DA;
+--g1:linear-gradient(135deg,#FBEDEA 0%,#F6EADB 55%,#EEF2F4 100%);--g2:linear-gradient(135deg,#EEF2F4 0%,#F6EADB 50%,#FBEDEA 100%)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--perla);color:var(--ink);font-family:'Jost',system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.narrow{max-width:720px;margin:0 auto}
+section{padding:64px 0}
+.tint{background:var(--g1)}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.12;margin:0 0 14px;color:var(--ink)}
+h1{font-size:clamp(36px,6.4vw,60px);text-align:center}
+h2{font-size:clamp(30px,4.8vw,44px);text-align:center}
+h3{font-size:clamp(24px,3.4vw,30px)}
+em.acc{font-style:italic;color:var(--rose);font-weight:500}
+.kicker{text-align:center;text-transform:uppercase;letter-spacing:.22em;font-size:13px;color:var(--rose);margin:0 0 10px;font-weight:500}
+.orn{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--gold);margin:4px 0 30px;font-size:18px}
+.orn:before,.orn:after{content:"";width:60px;height:1px;background:var(--gold)}
+.brand{text-align:center;padding:22px 16px 0}
+.brand .logo{font-family:'Great Vibes',cursive;font-size:36px;color:var(--rose);line-height:1}
+.brand .tagl{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--soft);margin-top:2px}
+.sub{font-size:19px;color:var(--soft);text-align:center;max-width:680px;margin:0 auto 26px}
+.btn{display:block;width:100%;max-width:460px;margin:26px auto 10px;background:var(--rose);color:#fff;text-align:center;text-decoration:none;font-weight:600;letter-spacing:.08em;padding:19px 22px;border-radius:999px;box-shadow:0 10px 26px rgba(183,110,121,.35);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(183,110,121,.45)}
+.under{text-align:center;font-size:14px;color:var(--soft);margin:0}
+.hero-photo{border-radius:220px 220px 24px 24px;overflow:hidden;max-width:560px;margin:0 auto;box-shadow:0 24px 50px rgba(58,46,44,.18);aspect-ratio:4/4.4}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:40% 50%}
+.devices{max-width:900px;margin:10px auto 0}
+.veh{max-width:680px;margin:22px auto 0;text-align:center;font-size:16px;color:var(--soft)}
+.veh b{color:var(--ink)}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 10px 30px rgba(58,46,44,.06)}
+.pains{list-style:none;padding:0;margin:0}
+.pains li{padding:14px 0 14px 34px;position:relative;border-bottom:1px solid var(--line)}
+.pains li:last-child{border:0}
+.pains li:before{content:"✕";position:absolute;left:4px;top:14px;color:var(--blush);font-weight:600}
+.zig{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;background:var(--g1);border-radius:28px;padding:34px;margin:0 0 26px}
+.zig.flip{background:var(--g2)}
+.zig.flip .zimg{order:-1}
+.zig h3{margin-bottom:8px}
+.zig p{margin:0;color:var(--soft)}
+.zimg{border-radius:18px;overflow:hidden;box-shadow:0 14px 34px rgba(58,46,44,.14);background:#fff;aspect-ratio:4/3}
+.zimg img{width:100%;height:100%;object-fit:cover;object-position:left top}
+.zimg.photo img{object-position:center}
+.ben{list-style:none;padding:0;margin:0}
+.ben li{padding:8px 0 8px 32px;position:relative}
+.ben li:before{content:"♡";position:absolute;left:2px;top:7px;color:var(--rose);font-size:18px}
+.star{text-align:center;font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3.6vw,32px);font-style:italic;color:var(--rose);max-width:720px;margin:34px auto 0;line-height:1.3}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{background:#fff;border-radius:22px;padding:24px;border:1px solid var(--line);text-align:center}
+.step .n{width:46px;height:46px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;background:var(--euca)}
+.step b{display:block;color:var(--rose);margin-bottom:6px;font-weight:600}
+/* demo animada */
+.demo{max-width:620px;margin:40px auto 0;background:#fff;border-radius:22px;border:1px solid var(--line);box-shadow:0 18px 44px rgba(58,46,44,.12);overflow:hidden;font-size:15px}
+.demo .bar{background:var(--g1);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--rose)}
+.demo .bar span{font-family:'Jost';font-size:13px;color:var(--soft)}
+.dk{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px 20px 6px}
+.dk div{background:#FBF6F1;border-radius:14px;padding:10px 14px;color:var(--soft);font-size:13px}
+.dk b{display:block;font-size:22px;color:var(--ink);font-weight:600}
+.prog{height:8px;background:#F1E6DE;border-radius:9px;margin:8px 0 2px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--euca);border-radius:9px;transition:width .6s}
+.prog.pay i{background:var(--rose)}
+.drow{display:flex;align-items:center;gap:12px;padding:11px 20px;border-top:1px solid var(--line);transition:background .4s}
+.chk{width:22px;height:22px;flex:0 0 22px;border:2px solid var(--blush);border-radius:7px;display:grid;place-items:center;color:#fff;font-size:14px;transition:all .3s}
+.drow.done{background:#F3F6F2}
+.drow.done .chk{background:var(--euca);border-color:var(--euca)}
+.drow.done .chk:after{content:"✓"}
+.drow .t{flex:1}
+.drow.done .t{color:var(--soft);text-decoration:line-through}
+.st{font-size:13px;font-weight:600;color:var(--soft);white-space:nowrap}
+.st.r{color:#B3434F}
+.drow.done .st{color:#5E7D5B}
+.demo-note{text-align:center;font-size:13px;color:var(--soft);margin:12px 0 0}
+.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:10px}
+.mini div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-size:15px}
+.gifts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px}
+.gift{background:#fff;border:1.5px dashed var(--gold);border-radius:20px;padding:20px}
+.gift img{border-radius:12px;margin-top:12px;border:1px solid var(--line)}
+.reasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.reason{border-radius:22px;padding:24px;background:var(--g1)}
+.reason:nth-child(even){background:var(--g2)}
+.reason .n{font-family:'Cormorant Garamond',serif;font-size:42px;color:var(--gold);line-height:1}
+.reason b{display:block;font-size:18px;margin:4px 0 6px}
+.reason p{margin:0;color:var(--soft);font-size:16px}
+.band{height:340px;background:url('img/ramo.jpg') center 45%/cover;position:relative}
+.band:after{content:"";position:absolute;inset:0;background:linear-gradient(var(--perla),transparent 20%,transparent 80%,var(--perla))}
+.price{background:#fff;border-radius:28px;padding:36px 24px;text-align:center;box-shadow:0 18px 50px rgba(58,46,44,.1);border:1px solid var(--line);max-width:560px;margin:0 auto}
+.tag{display:inline-block;background:var(--blush);color:#fff;border-radius:999px;padding:5px 16px;font-size:12px;letter-spacing:.18em;font-weight:600;margin-bottom:14px}
+.big{font-family:'Cormorant Garamond',serif;font-size:76px;font-weight:600;line-height:1;color:var(--ink)}
+.later{color:var(--soft);font-size:15px;margin:8px 0 0}
+.compare{font-size:15px;color:var(--soft);margin:16px 0 0}
+.guar{display:flex;gap:16px;align-items:center;background:#fff;border-radius:20px;padding:18px 20px;border:1px solid var(--gold);max-width:560px;margin:20px auto 0}
+.seal{flex:0 0 70px;height:70px;border-radius:50%;border:1.5px solid var(--gold);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--gold);text-align:center;line-height:1;font-size:15px;box-shadow:inset 0 0 0 4px #fff,inset 0 0 0 5px var(--gold)}
+details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin:0 0 10px}
+summary{font-weight:600;cursor:pointer;list-style:none;position:relative;padding-right:26px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";position:absolute;right:0;top:-2px;color:var(--rose);font-size:22px}
+details[open] summary:after{content:"–"}
+details p{margin:10px 0 0;color:var(--soft)}
+.final{position:relative;padding:110px 0;background:url('img/boda-ceremonia.jpg') center 35%/cover;text-align:center}
+.final:before{content:"";position:absolute;inset:0;background:rgba(58,46,44,.55)}
+.final .wrap{position:relative}
+.final h2{color:#fff}
+.final .em{display:block;font-style:italic;font-weight:500;color:#F6D9D4}
+footer{text-align:center;font-size:13px;color:var(--soft);padding:34px 16px}
+footer .logo{font-family:'Great Vibes',cursive;font-size:28px;color:var(--rose);display:block;margin-bottom:8px}
+footer a{color:var(--soft)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:760px){
+ section{padding:48px 0}
+ .zig{grid-template-columns:1fr;padding:22px;gap:20px}
+ .zig.flip .zimg{order:0}
+ .steps,.gifts{grid-template-columns:1fr}
+ .band{height:220px}
+ .card{padding:20px}
+}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="brand"><div class="logo">Nunți fără Griji</div><div class="tagl">Planificatorul Nunții</div></header>
+
+<section style="padding-top:34px"><div class="wrap">
+  <h1>Toată nunta, organizată <em class="acc">într-un singur loc.</em> Voi doar vă bucurați.</h1>
+  <p class="sub">Scrieți data, iar planul se face singur, lună de lună. Un tabel pentru Google Sheets și Excel: nași, cununia civilă și cea religioasă, invitați și buget. Ca la nuntă să ajungeți liniștiți, cu totul rezolvat.</p>
+  <div class="devices"><img src="img/mockup-dispositivos.png" alt="Planificatorul Nunții pe laptop, tabletă și telefon"></div>
+  <a class="btn" href="#pret">VREAU SĂ NE BUCURĂM DE NUNTA NOASTRĂ</a>
+  <p class="under">Plată unică · acces imediat · include tutorial video · garanție de 14 zile</p>
+</div></section>
+
+<section class="tint"><div class="wrap">
+  <p class="kicker">Planificatorul Nunții</p>
+  <h2>Tot ce aveți nevoie, <em class="acc">într-un singur tabel</em></h2>
+  <p class="sub" style="margin-bottom:8px">Voi completați; tabelul face calculele, datele și avertizările.</p>
+  <div class="orn">❦</div>
+
+  <div class="zig reveal"><div><h3>🏠 Start</h3><p>Cifrele nunții voastre dintr-o privire: zile rămase, invitați confirmați, cât mai e de plătit și următoarele 5 lucruri de făcut. Gata cu căutatul prin caiete și conversații.</p></div>
+    <div class="zimg"><img src="img/cap-tablero.jpg" alt="Pagina de start a planificatorului"></div></div>
+  <div class="zig flip reveal"><div><h3>📊 Grafice automate</h3><p>Bugetul, invitații și sarcinile, desenate singure din cifrele voastre. Scrieți un număr, iar graficele se schimbă.</p></div>
+    <div class="zimg"><img src="img/cap-grafice.jpg" alt="Graficele automate ale planificatorului"></div></div>
+  <div class="zig reveal"><div><h3>⏳ Numărătoarea inversă</h3><p>Peste 60 de sarcini, fiecare cu data ei, de la 12 luni înainte până în ajunul nunții. Seara știți exact ce e gata și ce urmează.</p></div>
+    <div class="zimg"><img src="img/cap-numaratoare.jpg" alt="Numărătoarea inversă cu sarcini"></div></div>
+  <div class="zig flip reveal"><div><h3>⛪ Calendarul bisericii 2026–2028</h3><p>Vedeți din timp perioadele în care biserica nu oficiază cununii: înainte să rezervați restaurantul, nu după.</p></div>
+    <div class="zimg"><img src="img/cap-calendar.jpg" alt="Calendarul bisericii"></div></div>
+  <div class="zig reveal"><div><h3>📍 Biserici și săli, pe zone</h3><p>Alegeți județul și apare lista: peste 11.000 de biserici și peste 1.000 de locații de evenimente din toată România, cu localitatea și, unde există, adresa, telefonul și site-ul. Vă căsătoriți în altă parte? Vă scrieți locurile voastre.</p></div>
+    <div class="zimg"><img src="img/cap-biserici.jpg" alt="Căutarea de biserici și săli pe zone"></div></div>
+  <div class="zig flip reveal"><div><h3>👥 Invitați</h3><p>Confirmări, meniu, copii și masa la care stau. Când restaurantul vă cere numărul final, îl aveți deja.</p></div>
+    <div class="zimg"><img src="img/cap-invitati.jpg" alt="Lista de invitați"></div></div>
+  <div class="zig reveal"><div><h3>💶 Buget</h3><p>Ce ați plătit și ce mai rămâne. Termenele, cu roșu când se apropie.</p></div>
+    <div class="zimg"><img src="img/cap-buget.jpg" alt="Bugetul nunții"></div></div>
+  <div class="zig flip reveal"><div><h3>🏛️ Comparați restaurantele</h3><p>Preț, număr de locuri și ce include, unul lângă altul.</p></div>
+    <div class="zimg"><img src="img/cap-sali.jpg" alt="Compararea restaurantelor"></div></div>
+  <div class="zig reveal"><div><h3>📱 Pentru amândoi, pe telefon</h3><p>Îl partajați ca pe orice document și îl completați amândoi, în același timp, de pe telefon sau de pe laptop. Organizarea devine ceva ce faceți împreună.</p></div>
+    <div class="zimg photo"><img src="img/pareja-organizando.jpg" alt="Un cuplu care își notează planurile, relaxat"></div></div>
+
+  <h3 style="text-align:center;margin-top:20px">Și mai aveți:</h3>
+  <div class="mini">
+    <div>📇 <b>Furnizori</b>: contacte, contracte și avansuri</div>
+    <div>🤝 <b>Nașii</b>: ce stabiliți împreună cu ei</div>
+    <div>📄 <b>Cununia civilă și religioasă</b>: pașii și actele de care să întrebați</div>
+    <div>🎥 <b>Tutorial video</b>: cum îl folosiți, pas cu pas, în câteva minute</div>
+  </div>
+  <p class="under" style="margin-top:18px">Funcționează în Google Sheets (gratuit, pe telefon) și în Excel.</p>
+
+  <h3 style="text-align:center;margin-top:40px">Și, în plus, cadou:</h3>
+  <div class="gifts">
+    <div class="gift reveal">🎁 <b>Întrebările pe care să le puneți restaurantului și fotografului înainte să semnați</b> — ca să nu aveți surprize după ce ați dat deja avansul.</div>
+    <div class="gift reveal">🎁 <b>Planul meselor</b> — așezați invitații la mese, iar tabelul vă anunță dacă la o masă sunt mai mulți oameni decât locuri.<img src="img/cap-mese.jpg" alt="Planul meselor"></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="kicker">Cum funcționează</p>
+  <h2>3 pași, 5 minute</h2>
+  <div class="orn">❦</div>
+  <div class="steps">
+    <div class="step reveal"><div class="n">1</div><b>1 minut</b>Scrieți data nunții (și pe cea a cununiei civile sau religioase, dacă sunt în alte zile).</div>
+    <div class="step reveal"><div class="n">2</div><b>Imediat</b>Tabelul vă arată singur ce aveți de făcut în fiecare lună, de la 12 luni înainte până în ajunul nunții, și vă avertizează cu roșu dacă data cununiei religioase cade într-o perioadă în care biserica nu oficiază cununii.</div>
+    <div class="step reveal"><div class="n">3</div><b>30 de minute pe săptămână</b>Bifați ce ați rezolvat. Pagina de start vă arată câte zile au mai rămas, câți invitați au confirmat, cât mai e de plătit și următoarele 5 lucruri de făcut.</div>
+  </div>
+
+  <div class="demo" id="demo" aria-label="Exemplu: bifați sarcinile, iar tabelul se actualizează singur">
+    <div class="bar">Andreea &amp; Mihai <span id="d-days">214 zile până la nuntă</span></div>
+    <div class="dk">
+      <div>Sarcini gata<b id="d-done">16 din 62</b><div class="prog"><i id="d-p1"></i></div></div>
+      <div>Plătit din buget<b id="d-paid">25.200 lei</b><div class="prog pay"><i id="d-p2"></i></div></div>
+    </div>
+    <div class="drow" data-pay="0"><span class="chk"></span><span class="t">Alegeți meniul la restaurant</span><span class="st">în 1 săpt.</span></div>
+    <div class="drow" data-pay="2500"><span class="chk"></span><span class="t">Avans fotograf</span><span class="st r">expiră în 3 zile</span></div>
+    <div class="drow" data-pay="0"><span class="chk"></span><span class="t">Vizită la nași (plocon)</span><span class="st">în 2 săpt.</span></div>
+    <div class="drow" data-pay="1500"><span class="chk"></span><span class="t">Avans formație / DJ</span><span class="st">în 4 săpt.</span></div>
+    <div class="drow" data-pay="0"><span class="chk"></span><span class="t">Programare la primărie</span><span class="st">în 5 săpt.</span></div>
+  </div>
+  <p class="demo-note">Exemplu: bifați, iar tabelul se actualizează singur.</p>
+  <p class="under" style="margin-top:14px">Nu trebuie să știți Excel: completați căsuțele, iar tabelul calculează singur.</p>
+  <p class="star" style="font-size:clamp(22px,3vw,28px)">Săptămână de săptămână, lista se micșorează. Iar în ziua nunții nu mai rămâne nimic de rezolvat: doar să vă bucurați de ea.</p>
+  <a class="btn" href="#pret">VREAU SĂ ORGANIZĂM NUNTA FĂRĂ STRES</a>
+</div></section>
+
+<section class="tint"><div class="wrap">
+  <h2>5 motive să-l alegeți</h2>
+  <div class="orn">❦</div>
+  <div class="reasons">
+    <div class="reason reveal"><div class="n">01</div><b>Organizați de oriunde</b><p>La o cafea, în pauza de masă sau în autobuz: planul e pe telefonul amândurora.</p></div>
+    <div class="reason reveal"><div class="n">02</div><b>Vă încadrați în buget</b><p>Vedeți oricând ce ați plătit, ce mai rămâne și până când. Fără cheltuieli neprevăzute.</p></div>
+    <div class="reason reveal"><div class="n">03</div><b>Zero stres cu organizarea</b><p>Date, furnizori și sarcini, toate într-un singur loc. Respirați din nou și treceți prin toate ca o echipă.</p></div>
+    <div class="reason reveal"><div class="n">04</div><b>Economisiți ore întregi</b><p>Lista de sarcini, datele și calculele sunt deja făcute: voi doar completați.</p></div>
+    <div class="reason reveal"><div class="n">05</div><b>Nu vă scapă niciun termen</b><p>Tabelul marchează cu roșu ce se apropie de termen, chiar și atunci când aveți o mie de lucruri pe cap.</p></div>
+  </div>
+</div></section>
+
+<div class="band" role="img" aria-label="Mâinile mirilor și buchetul de flori"></div>
+
+<section id="pret" style="padding-top:20px"><div class="wrap">
+  <h2>Toate acestea, pentru mai puțin decât costă invitațiile de nuntă</h2>
+  <div class="orn">❦</div>
+  <div class="price">
+    <span class="tag">PREȚ DE LANSARE</span>
+    <div class="big">99 lei</div>
+    <p class="later">ofertă valabilă până pe <b>15 decembrie</b> · apoi: <b>149 lei</b></p>
+    <p class="compare">O aplicație de nuntă costă până la 350 lei pe eveniment. Un wedding planner, mii de euro.<br>Voi plătiți o singură dată, iar tabelul rămâne al vostru pentru totdeauna.</p>
+    <a class="btn" href="https://crocant.impultienda.ar/checkout">VREAU PLANIFICATORUL</a>
+    <p class="under">Plată securizată · acces imediat pe e-mail</p>
+  </div>
+  <div class="guar"><div class="seal">14<br>zile</div><div><b>Garanție de 14 zile.</b> Dacă vă răzgândiți, ne anunțați și vă returnăm banii.</div></div>
+</div></section>
+
+<section><div class="wrap narrow">
+  <h2>Întrebări frecvente</h2>
+  <div class="orn">❦</div>
+  <details><summary>Trebuie să știm Excel?</summary><p>Nu. Completați căsuțele, iar restul se calculează singur.</p></details>
+  <details><summary>Merge pe telefon?</summary><p>Da, cu Google Sheets, care e gratuit.</p></details>
+  <details><summary>Îl putem folosi amândoi în același timp?</summary><p>Da, îl partajați ca pe orice alt document.</p></details>
+  <details><summary>Și dacă facem doar cununia civilă?</summary><p>Vă ajută la fel: sarcinile legate de biserică se marchează singure cu gri, ca să știți că nu vă privesc.</p></details>
+  <details><summary>E un produs fizic?</summary><p>Nu, e digital: îl primiți pe e-mail imediat după plată.</p></details>
+  <details><summary>Am rezervat deja restaurantul. Ne mai ajută?</summary><p>Da: bifați ce ați rezolvat deja, iar tabelul vă arată ce mai rămâne.</p></details>
+  <details><summary>Cum învățăm să-l folosim?</summary><p>Vine cu un tutorial video scurt, care vă arată pas cu pas cum să-l folosiți.</p></details>
+  <details><summary>Organizați nunți în mod profesionist? Îl puteți folosi pentru mai multe cupluri?</summary><p>Da. Faceți câte o copie pentru fiecare nuntă, de câte ori vreți, și o puteți partaja cu fiecare cuplu, ca să vadă cum avansează pregătirile.</p></details>
+</div></section>
+
+<section class="final"><div class="wrap">
+  <h2>Organizare fără stres.<span class="em">La nuntă, singura voastră grijă e să vă bucurați.</span></h2>
+  <a class="btn" href="#pret">VREAU SĂ NE BUCURĂM DE NUNTA NOASTRĂ</a>
+</div></section>
+
+<footer><span class="logo">Nunți fără Griji</span><a href="termeni.html">Termeni și condiții</a> · <a href="rambursare.html">Politica de retur</a> · <a href="confidentialitate.html">Confidențialitate</a> · <a href="mailto:contact@nuntifaragriji.ro">Contact</a> · <a href="#" id="ck-open">Cookie-uri</a></footer>
+<script src="cookies.js"></script>
+<script>
+// aparición suave al bajar
+(function(){var els=document.querySelectorAll('.reveal');
+ if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+ els.forEach(function(e){io.observe(e)})})();
+// muestra animada: se tildan tareas y suben los números
+(function(){var rows=[].slice.call(document.querySelectorAll('#demo .drow'));if(!rows.length)return;
+ var base={done:16,paid:25200},total={tasks:62,budget:91200},i=0;
+ function fmt(n){return n.toLocaleString('de-DE')+' lei'}
+ function paint(){var d=base.done,p=base.paid;rows.forEach(function(r){if(r.classList.contains('done')){d++;p+=+r.dataset.pay}});
+  document.getElementById('d-done').textContent=d+' din '+total.tasks;document.getElementById('d-paid').textContent=fmt(p);
+  document.getElementById('d-p1').style.width=(d/total.tasks*100)+'%';document.getElementById('d-p2').style.width=(p/total.budget*100)+'%'}
+ paint();
+ if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ setInterval(function(){if(i<rows.length){rows[i].classList.add('done');i++}else{rows.forEach(function(r){r.classList.remove('done')});i=0}paint()},1400)})();
+</script>
+<script>(function(){var q=location.search;if(!q)return;document.querySelectorAll('a[href^="https://crocant.impultienda.ar/checkout"]').forEach(function(a){a.href=a.href+(a.href.indexOf("?")<0?q:"&"+q.slice(1));});})();</script>
+</body>
+</html>

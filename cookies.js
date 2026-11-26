@@ -1,7 +1,7 @@
 /* Banner de cookie-uri + pixel Meta. Pixelul se încarcă DOAR dacă apeși „Accept”.
    Cât timp PIXEL_ID e gol, nu apare nimic. Pentru a activa: pune numărul pixelului (16 cifre). */
 (function(){
-  var PIXEL_ID = '1449117727376548';
+  var PIXEL_ID = '2592381644561252';
   if(!PIXEL_ID) return;
   var box=document.createElement('div');
   box.id='ck';box.hidden=true;
